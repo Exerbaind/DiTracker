@@ -1,11 +1,14 @@
 <template>
   <div class="todos">
-    <NoteCard
-      v-for="note in user.notes"
-      v-bind:note="note"
-      :key="note.id"
-      @deleteNote="deleteNote"
-    />
+    <h1 class="todos__title">Задачи</h1>
+    <div class="todos__list">
+      <NoteCard
+        v-for="note in user.notes"
+        v-bind:note="note"
+        :key="note.id"
+        @deleteNote="deleteNote"
+      />
+    </div>
   </div>
 </template>
 
@@ -40,5 +43,14 @@ export default {
   position: relative;
   left: 10vw;
   width: 90vw;
+  padding: 20px 40px;
+  .todos__title {
+    font-size: 36px;
+  }
+  .todos__list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 </style>

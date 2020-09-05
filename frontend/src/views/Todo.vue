@@ -6,7 +6,24 @@
       <input type="text" v-model="noteTitle" name="noteTitle" id="noteTitle" />
       <label>Описание</label>
       <input type="text" v-model="noteDesc" name="noteDesc" id="noteDesc" />
-      <input type="text" v-model="backC" name="backC" id="backC" />
+      <label>Цвет заметки</label>
+      <!-- <input type="text" v-model="backC" name="backC" id="backC" /> -->
+      <select name="backC" id="backC" v-model="backC">
+        <option value="white">Белый</option>
+        <option value="black">Черный</option>
+        <option value="red">Красный</option>
+        <option value="green">Зеленый</option>
+        <option value="blue">Синий</option>
+      </select>
+      <label>Цвет текста</label>
+      <!-- <input type="text" v-model="textC" name="textC" id="textC" /> -->
+      <select name="textC" id="textC" v-model="textC">
+        <option value="black">Черный</option>
+        <option value="white">Белый</option>
+        <option value="red">Красный</option>
+        <option value="green">Зеленый</option>
+        <option value="blue">Синий</option>
+      </select>
       <input type="submit" value="Отправить" />
     </form>
   </div>
@@ -15,27 +32,24 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "Home",
   data() {
     return {
       noteTitle: "",
       noteDesc: "",
-      backC: ""
+      backC: "white",
+      textC: "black"
     };
   },
   methods: {
     ...mapActions(["putNote", "getProfile"]),
-    // logoutUser() {
-    //   this.logout();
-    //   location.reload();
-    // },
     sendNote() {
       let note = {
         id: Date.now(),
         email: this.user.email,
         title: this.noteTitle,
         description: this.noteDesc,
-        backC: this.backC
+        backC: this.backC,
+        textC: this.textC
       };
       this.putNote(note);
       this.$router.push("/todos");

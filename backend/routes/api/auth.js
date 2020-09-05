@@ -128,7 +128,8 @@ router.post('/todo', async (req, res) => {
             id: req.body.id,
             title: req.body.title,
             description: req.body.description,
-            backC: req.body.backC
+            backC: req.body.backC,
+            textC: req.body.textC
         };
         user.notes.push(newNote);
         user.save()
@@ -148,7 +149,6 @@ router.put('/todos', (req, res) => {
         email: req.body.email
     }).then(user => {
         userNotes = user.notes
-        // let upUserNotes = userNotes.filter(note => note.id !== 1599215760634);
         let upUserNotes = userNotes.filter(note => note.id !== req.body.id);
         user.notes = upUserNotes;
         user.save().then(() => {
@@ -158,13 +158,5 @@ router.put('/todos', (req, res) => {
         })
     })
 })
-
-// router.get('/todos', (req, res) => {
-//     Note.find().then(note => {
-//         res.status(200).json({
-//             note: note,
-//         })
-//     })
-// })
 
 module.exports = router;
