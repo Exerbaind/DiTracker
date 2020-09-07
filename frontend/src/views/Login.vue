@@ -57,6 +57,9 @@ export default {
           console.log(err);
         });
     }
+  },
+  destroyed() {
+    location.reload();
   }
 };
 </script>

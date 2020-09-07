@@ -35,6 +35,8 @@ router.post('/register', (req, res) => {
                     name,
                     email,
                     password,
+                    number: 'Не указан',
+                    lastName: 'Не указана'
                 });
                 bycrypt.genSalt(10, (err, salt) => {
                     bycrypt.hash(newUser.password, salt, (err, hash) => {
@@ -96,30 +98,6 @@ router.post('/login', (req, res) => {
         })
 });
 
-// router.post('/todo', async (req, res) => {
-//     let {
-//         email,
-//         title,
-//         description
-//     } = req.body
-//     Note.findOne({
-//         email: email
-//     }).then(note => {
-//         let newNote = new Note({
-//             email,
-//             title,
-//             description
-//         })
-//         newNote.save()
-//             .then(note => {
-//                 return res.status(201).json({
-//                     msg: 'Заметка создана',
-//                     success: true,
-//                 });
-//             });
-//     })
-// })
-
 router.post('/todo', async (req, res) => {
     User.findOne({
         email: req.body.email
@@ -144,6 +122,9 @@ router.get('/profile', passport.authenticate('jwt', {
     })
 });
 
+
+// Удаление заметки
+
 router.put('/todos', (req, res) => {
     User.findOne({
         email: req.body.email
@@ -158,5 +139,27 @@ router.put('/todos', (req, res) => {
         })
     })
 })
+
+// Обновление заметки
+
+// router.put('/todos/1599389092386', (req, res) => {
+//     User.findOne({
+//         email: req.body.email
+//     }).then(user => {
+//         userNotes = user.notes
+//         let upUserNotes = userNotes.filter(note => note.id == req.body.id);
+//         let listWithoutUpdated = userNotes.filter(note => note.id != req.body.id);
+//         upUserNotes.title = req.body.title;
+//         upUserNotes.title = req.body.desc;
+//         listWithoutUpdated.push(upUserNotes);
+//         user.notes = listWithoutUpdated;
+//         user.save().then(() => {
+//             res.status(200).json({
+//                 user: user
+//             })
+//         })
+//     })
+// })
+
 
 module.exports = router;

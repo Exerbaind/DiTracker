@@ -1,6 +1,6 @@
 <template>
   <div class="todos">
-    <h1 class="todos__title">Задачи</h1>
+    <h1 class="todos__title">Заметки</h1>
     <div class="todos__list">
       <NoteCard
         v-for="note in user.notes"
@@ -44,6 +44,13 @@ export default {
   left: 10vw;
   width: 90vw;
   padding: 20px 40px;
+  @media screen and (max-width: 1060px) {
+    left: 0;
+    width: 100%;
+    top: 40px;
+    padding: 20px;
+    height: auto;
+  }
   .todos__title {
     font-size: 36px;
   }

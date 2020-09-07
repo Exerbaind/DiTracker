@@ -1,12 +1,12 @@
 <template>
   <div class="todo">
-    <h1>Создать заметку</h1>
-    <form @submit.prevent="sendNote">
-      <label>Заголовок</label>
-      <input type="text" v-model="noteTitle" name="noteTitle" id="noteTitle" />
-      <label>Описание</label>
-      <input type="text" v-model="noteDesc" name="noteDesc" id="noteDesc" />
-      <label>Цвет заметки</label>
+    <h1 class="todo__header">Создать заметку</h1>
+    <form @submit.prevent="sendNote" class="todo__form">
+      <label>Заголовок:</label>
+      <input type="text" v-model="noteTitle" name="noteTitle" id="noteTitle" class="todo__title" />
+      <label>Описание:</label>
+      <textarea v-model="noteDesc" name="noteDesc" id="noteDesc" class="todo__desc" rows="6"></textarea>
+      <label>Цвет заметки:</label>
       <!-- <input type="text" v-model="backC" name="backC" id="backC" /> -->
       <select name="backC" id="backC" v-model="backC">
         <option value="white">Белый</option>
@@ -15,7 +15,7 @@
         <option value="green">Зеленый</option>
         <option value="blue">Синий</option>
       </select>
-      <label>Цвет текста</label>
+      <label>Цвет текста:</label>
       <!-- <input type="text" v-model="textC" name="textC" id="textC" /> -->
       <select name="textC" id="textC" v-model="textC">
         <option value="black">Черный</option>
@@ -24,7 +24,7 @@
         <option value="green">Зеленый</option>
         <option value="blue">Синий</option>
       </select>
-      <input type="submit" value="Отправить" />
+      <input type="submit" value="Отправить" class="todo__sbt" />
     </form>
   </div>
 </template>
@@ -69,5 +69,63 @@ export default {
   position: relative;
   left: 10vw;
   width: 90vw;
+  padding: 40px;
+  @media screen and (max-width: 1060px) {
+    left: 0;
+    width: 100%;
+    top: 40px;
+    padding: 20px;
+    height: auto;
+  }
+  .todo__header {
+    font-size: 36px;
+  }
+  .todo__form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    @media screen and (max-width: 1060px) {
+      margin-top: 0;
+    }
+    label {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+    .todo__title {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .todo__desc {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .todo__sbt {
+      background-color: black;
+      padding: 10px 0;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      outline: none;
+      margin-top: 15px;
+      @media screen and (min-width: 1000px) {
+        &:hover {
+          background-color: #0064b7;
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+    select {
+      @media screen and (max-width: 1060px) {
+        height: 40px;
+        padding: 0 10px;
+      }
+    }
+  }
 }
 </style>

@@ -61,6 +61,15 @@ const router = new VueRouter({
         requiresAuth: true
       }
     },
+    {
+      path: "/todos/:id",
+      name: 'todoItem',
+      component: () =>
+        import('../views/NotePage.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 });
 
